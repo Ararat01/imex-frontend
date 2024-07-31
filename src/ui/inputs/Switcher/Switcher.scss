@@ -1,0 +1,25 @@
+.switcher {
+    button {
+        padding: 10px 15px;
+        border: 1px solid var(--dark-blue);
+        background: transparent;
+        font-weight: 600;
+        color: var(--dark-blue);
+        transition: .3s;
+        &:hover {
+            background-color: var(--blue);
+            color: var(--white);
+        }
+        &.active {
+            background-color: var(--dark-blue);
+            color: var(--white);
+            cursor: default;
+        }
+    }
+    &_left {
+        border-radius: 10px 0 0 10px;
+    }
+    &_right {
+        border-radius: 0 10px 10px 0;
+    }
+}

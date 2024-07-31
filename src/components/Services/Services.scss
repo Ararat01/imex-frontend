@@ -1,0 +1,28 @@
+.Services {
+    display: flex;
+    justify-content: space-between;
+    div {
+        width: 17%;
+    }
+    button {
+        aspect-ratio: 1/1;
+        border: 1px solid var(--gray);
+        background-color: transparent;
+        border-radius: 10px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        overflow: hidden;
+        margin-bottom: 5px;
+        &:hover {
+            img {
+                transform: scale(1.1);
+            }
+        }
+        img {
+            width: 90%;
+            transition: 0.3s;
+        }
+    }
+}

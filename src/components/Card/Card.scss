@@ -1,0 +1,15 @@
+.card {
+    display: inline-flex;
+    align-items: center;
+    flex-direction: column;
+    padding: 15px;
+    border: 1px solid var(--gray);
+    border-radius: 10px;
+    img {
+        max-height: 200px;
+    }
+    h3 {
+        font-size: 22px;
+        font-weight: 300;
+    }
+}

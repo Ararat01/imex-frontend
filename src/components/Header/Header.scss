@@ -1,0 +1,26 @@
+@use "./../../shared.scss";
+
+.head {
+    padding: 25px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    .logo {
+        display: flex;
+        align-items: center;
+        img {
+            width: 50px;
+            object-fit: cover;
+            margin-right: 10px;
+        }
+        span {
+            font-size: 25px;
+            font-weight: 500;
+        }
+    }
+    .account {
+        :not(:first-child) {
+            margin-left: 10px;
+        }
+    }
+}

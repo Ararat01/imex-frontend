@@ -1,0 +1,40 @@
+.form {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    form {
+        display: flex;
+        align-items: stretch;
+        text-align: center;
+        flex-direction: column;
+        justify-content: center;
+        padding: 40px 0;
+        min-width: 400px;
+
+        .mb10 {
+            margin-bottom: 10px;
+        }
+        .switcher {
+            margin: 0;
+        }
+        input::placeholder {
+            font-size: 15px;
+        }
+        input,
+        textarea {
+            padding: 10px 25px;
+            border-radius: 15px;
+            font-size: 18px;
+            border: 1px solid var(--gray);
+        }
+        textarea {
+            font-size: 15px;
+            resize: vertical;
+        }
+    }
+    a {
+        color: var(--blue);
+        text-decoration: underline;
+    }
+}
