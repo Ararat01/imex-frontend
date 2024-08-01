@@ -1,15 +1,24 @@
 .card {
     display: inline-flex;
-    align-items: center;
+    cursor: pointer;
     flex-direction: column;
     padding: 15px;
-    border: 1px solid var(--gray);
+    border: 1px solid var(--dark);
+    overflow: hidden;
+    max-width: 180px;
     border-radius: 10px;
     img {
-        max-height: 200px;
+        object-fit: cover;
+        width: 100%;
     }
     h3 {
-        font-size: 22px;
+        font-size: 18px;
         font-weight: 300;
+    }
+    span {
+        width: 100%;
+        text-align: right;
+        border-top: 1px solid var(--dark);
+        padding-top: 15px;
     }
 }

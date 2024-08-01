@@ -2,7 +2,12 @@
     display: flex;
     align-items: center;
     padding: 25px 0;
-    p {
+    &_sort {
         margin-left: 20px;
+        display: flex;
+        align-items: center;
+        span {
+            margin-right: 5px;
+        }
     }
 }

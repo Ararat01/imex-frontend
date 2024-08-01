@@ -15,16 +15,16 @@ const checkAuth = () => {
         .then((res) => {
           if (res.data) {
             resolve(true);
-            window.localStorage.setItem("userName", res.data.fullName);
+            window.localStorage.setItem("userId", res.data._id);
           } else {
             window.localStorage.removeItem("token");
-            window.localStorage.removeItem("userName");
+            window.localStorage.removeItem("userId");
             resolve(false);
           }
         })
         .catch((err) => {
           window.localStorage.removeItem("token");
-          window.localStorage.removeItem("userName");
+          window.localStorage.removeItem("userId");
           resolve(false);
           console.log(err);
         });
