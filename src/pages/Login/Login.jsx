@@ -53,7 +53,7 @@ export const Login = () => {
             })}
             name="password"
           />
-          <Button text="Մուտք" click={onSubmit} />
+          <Button type="submit" text="Մուտք" click={onSubmit} />
         </form>
         <p>Դեռ գրանցված չե՞ք</p>
         <Link>Գրանցում</Link>

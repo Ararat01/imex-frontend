@@ -15,6 +15,23 @@
         .mb10 {
             margin-bottom: 10px;
         }
+        .field {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            .controller {
+                margin-right: 10px;
+            }
+            .delete {
+                padding: 7px;
+                border: 1px solid #f84646;
+                background-color: transparent;
+                border-radius: 10px;
+                svg {
+                    width: 20px;
+                }
+            }
+        }
         .switcher {
             margin: 0;
         }

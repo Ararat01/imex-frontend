@@ -1,17 +1,23 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import "./Select.scss";
 
 export const Select = ({
   def = "Տիպ",
   options = ["Արտահանում", "Ներմուծում"],
+  text="",
+  getValue = () => {}
 }) => {
   const [show, setShow] = useState(false);
   const [option, setOption] = useState(def);
   const changeOption = (opt) => {
     setOption(opt);
   };
+  useEffect(() => {
+    getValue(option)
+  }, [option])
   return (
     <div className="select">
+      <span>{text}</span>
       <button onClick={() => setShow(!show)} type="button">
         <span>{option}</span>
         <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">

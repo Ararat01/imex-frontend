@@ -6,7 +6,7 @@ import checkAuth from "../../checkAuth";
 import Button from "../../ui/Button/Button";
 import { useNavigate } from "react-router-dom";
 
-export default function Header() {
+export default function Header({searchProduct}) {
   const auth = checkAuth();
   const navigate = useNavigate();
 
@@ -19,14 +19,14 @@ export default function Header() {
     <header>
       <div className="container head">
         <Link to={"/"} className="logo">
-          <img src="/log.png" alt="No img" />
+          <img src="/logo192.png" alt="No img" />
           <p>
             <span>International Platform for</span>
             <span>Import and Export</span>
           </p>
         </Link>
         <div className="input">
-          <Search />
+          <Search searchProduct={searchProduct} />
         </div>
         <div className="account">
           {auth ? (

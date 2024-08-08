@@ -2,17 +2,23 @@ import React, { useEffect, useState } from "react";
 import { Card } from "./../../components/Card/Card.jsx";
 import Categories from "./../../components/Categories/Categories.jsx";
 import { Filters } from "./../../components/Filters/Filters.jsx";
-import Services from "./../../components/Services/Services.jsx";
 import "./Main.scss";
 import axios from "axios";
 import Header from "./../../components/Header/Header.jsx";
+import { useNavigate } from "react-router-dom";
+import API_URL from "../../config.js";
 
 export const Main = () => {
-  const [category, setCategory] = useState("Դեղամիջոցներ");
+  const [category, setCategory] = useState("all");
   const [products, setProducts] = useState([]);
+  const [switcherValue, setSwitcherValue] = useState("Ներմուծում");
+  const navigate = useNavigate();
+  const getSearchProducts = (data) => {
+    setProducts(data)
+  }
   useEffect(() => {
     axios
-      .post("http://localhost:4444/product/category", {
+      .post(API_URL+"/product/category", {
         category: category,
       })
       .then(({ data }) => {
@@ -22,25 +28,28 @@ export const Main = () => {
   }, [category]);
   return (
     <div>
-      <Header />
+      <Header searchProduct={getSearchProducts} />
       <Categories category={category} change={setCategory} />
-      <Services />
-      <Filters />
-      <h3 className="container">{category}</h3>
+      <Filters switcherValue={switcherValue} setSwitcherValue={setSwitcherValue} />
+      <h3 className="container">{category === "all" ? "" : category}</h3>
       <div className="container products">
-        {products.length ? (
-          products.map((prod, i) => {
+        {products.filter((el) => el.type === switcherValue).length ? (
+          products.filter((el) => el.type === switcherValue).map((prod, i) => {
             return (
-              <Card
-                key={i}
-                name={prod.name}
-                img={prod.images[0]}
-                price={prod.price}
-              />
+              <div key={i} className="child">
+                <Card
+                  name={prod.name}
+                  img={prod.images[0]}
+                  price={prod.price}
+                  openProduct={() => navigate(`product/${prod._id}`)}
+                />
+              </div>
             );
           })
         ) : (
-          <></>
+          <div>
+            <h4>Արտադրանք չի գտնվել</h4>
+          </div>
         )}
       </div>
     </div>

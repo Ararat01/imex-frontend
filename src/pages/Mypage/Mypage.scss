@@ -1,0 +1,96 @@
+.user {
+    display: flex;
+    justify-content: space-between;
+    &_info {
+        width: 45%;
+        &-name {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+            img {
+                width: 60px;
+            }
+        }
+        &-table {
+            display: flex;
+            flex-direction: column;
+            align-items: stretch;
+            padding: 20px 0;
+            div {
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+                padding: 5px 0;
+                p {
+                    font-size: 18px;
+                }
+                span {
+                    font-size: 17px;
+                    font-weight: 100;
+                    font-family: "MyMontesserat", sans-serif;
+                }
+            }
+            .notverified {
+                display: inline-flex;
+                align-items: flex-end;
+                background-color: transparent;
+                border: none;
+                span {
+                    margin-right: 3px;
+                    color: red;
+                }
+                svg {
+                    width: 15px;
+                }
+            }
+        }
+    }
+    &_services {
+        width: 45%;
+    }
+}
+.myProducts {
+    display: flex;
+    align-items: stretch;
+    flex-wrap: wrap;
+    padding: 40px 0;
+    .add {
+        background-color: var(--blue);
+        border-radius: 15px;
+        padding: 15px;
+        width: 180px;
+        text-align: center;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+        border: none;
+        &:hover {
+            svg {
+                transform: scale(1.1);
+            }
+        } 
+        &:disabled {
+            background-color: var(--gray);
+            cursor: default;
+            &:hover {
+                svg {
+                    transform: scale(1);
+                }
+            } 
+        }
+        svg {
+            transition: .3s;
+            width: 40px;
+        }
+        span {
+            color: var(--white);
+            font-size: 20px;
+            margin-bottom: 15px;
+        }
+    }
+    .child {
+        margin: 10px;
+    }
+}

@@ -1,5 +1,9 @@
 .select {
     position: relative;
+    z-index: 10;
+    span {
+        margin-right: 10px;
+    }
     button {
         display: inline-flex;
         align-items: center;

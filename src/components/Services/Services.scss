@@ -1,8 +1,12 @@
-.Services {
+.services {
     display: flex;
-    justify-content: space-between;
+    flex-wrap: wrap;
     div {
-        width: 17%;
+        width: 32%;
+        &.mrl2 {
+            margin: 0 2%;
+        }
+        margin-bottom: 10px;
     }
     button {
         aspect-ratio: 1/1;
