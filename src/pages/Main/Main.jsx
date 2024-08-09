@@ -14,11 +14,11 @@ export const Main = () => {
   const [switcherValue, setSwitcherValue] = useState("Ներմուծում");
   const navigate = useNavigate();
   const getSearchProducts = (data) => {
-    setProducts(data)
-  }
+    setProducts(data);
+  };
   useEffect(() => {
     axios
-      .post(API_URL+"/product/category", {
+      .post(API_URL + "/product/category", {
         category: category,
       })
       .then(({ data }) => {
@@ -30,27 +30,33 @@ export const Main = () => {
     <div>
       <Header searchProduct={getSearchProducts} />
       <Categories category={category} change={setCategory} />
-      <Filters switcherValue={switcherValue} setSwitcherValue={setSwitcherValue} />
-      <h3 className="container">{category === "all" ? "" : category}</h3>
-      <div className="container products">
-        {products.filter((el) => el.type === switcherValue).length ? (
-          products.filter((el) => el.type === switcherValue).map((prod, i) => {
-            return (
-              <div key={i} className="child">
-                <Card
-                  name={prod.name}
-                  img={prod.images[0]}
-                  price={prod.price}
-                  openProduct={() => navigate(`product/${prod._id}`)}
-                />
-              </div>
-            );
-          })
-        ) : (
-          <div>
-            <h4>Արտադրանք չի գտնվել</h4>
-          </div>
-        )}
+      <Filters
+        switcherValue={switcherValue}
+        setSwitcherValue={setSwitcherValue}
+      />
+      <div className="container">
+        <div className="products">
+          {products.filter((el) => el.type === switcherValue).length ? (
+            products
+              .filter((el) => el.type === switcherValue)
+              .map((prod, i) => {
+                return (
+                  <div key={i} className="child">
+                    <Card
+                      name={prod.name}
+                      img={prod.images[0]}
+                      price={prod.price}
+                      openProduct={() => navigate(`product/${prod._id}`)}
+                    />
+                  </div>
+                );
+              })
+          ) : (
+            <div>
+              <h4>Արտադրանք չի գտնվել</h4>
+            </div>
+          )}
+        </div>
       </div>
     </div>
   );

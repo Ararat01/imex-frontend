@@ -8,6 +8,7 @@ export default function Categories({ category = "", change }) {
   const [categories, setCategories] = useState([]);
   const [more, setMore] = useState(false);
   const changeCategory = (e) => {
+    setMore(false);
     change(e.innerText);
   };
   useEffect(() => {
@@ -24,7 +25,8 @@ export default function Categories({ category = "", change }) {
     <div className="container">
       <h3>Կատեգորիա</h3>
 
-      <div className="categories" style={{ height: more ? "auto" : "220px" }}>
+      <p className="selected">{category === "all" ? "" : category}</p>
+      <div className="categories" style={{ height: more ? "auto" : "0px" }}>
         {categories.map(({ name }, i) => {
           if (
             name[0].toUpperCase() !== categories[i - 1]?.name[0].toUpperCase()
@@ -52,7 +54,7 @@ export default function Categories({ category = "", change }) {
         })}
       </div>
       <button className="more" onClick={() => setMore(!more)}>
-        <span>{more ? "Պակաս" : "Ավելի"}</span>
+        <span>{more ? "Փակել" : "Ընտրել կատեգորիա"}</span>
         <svg
           viewBox="0 0 24 24"
           style={{ transform: more ? "rotateZ(180deg)" : "" }}

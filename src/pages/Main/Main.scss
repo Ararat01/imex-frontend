@@ -1,10 +1,38 @@
 .products {
-    padding-bottom: 40px;
     display: flex;
     align-items: center;
     justify-content: flex-start;
     align-items: stretch;
     .child {
-        margin: 10px;
+        width: 18%;
+        margin: 1%;
     }
 }
+
+@media screen and (max-width: 900px) {
+    .products {
+        .child {
+            width: 22%;
+            margin: 1.5%;
+        }
+    }
+}
+
+@media screen and (max-width: 650px) {
+    .products {
+        .child {
+            width: 31%;
+            margin: 1%;
+        }
+    }
+}
+
+@media screen and (max-width: 480px) {
+    .products {
+        .child {
+            width: 46%;
+            margin: 2%;
+        }
+    }
+}
+

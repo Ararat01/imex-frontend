@@ -1,4 +1,16 @@
 .container {
     max-width: 1200px;
     margin: 0 auto;
+    padding: 0 10px;
+}
+
+@media screen and (max-width: 1300px) {
+    .container {
+        max-width: 1000px;
+    }
+}
+@media screen and (max-width: 1000px) {
+    .container {
+        max-width: 900px;
+    }
 }

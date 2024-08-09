@@ -6,7 +6,7 @@ import checkAuth from "../../checkAuth";
 import Button from "../../ui/Button/Button";
 import { useNavigate } from "react-router-dom";
 
-export default function Header({searchProduct}) {
+export default function Header({ searchProduct }) {
   const auth = checkAuth();
   const navigate = useNavigate();
 
@@ -25,7 +25,7 @@ export default function Header({searchProduct}) {
             <span>Import and Export</span>
           </p>
         </Link>
-        <div className="input">
+        <div>
           <Search searchProduct={searchProduct} />
         </div>
         <div className="account">
@@ -34,19 +34,59 @@ export default function Header({searchProduct}) {
               <Link to={"/mypage/"} className="btn">
                 Իմ էջը
               </Link>
-              <Button text="Դուրս գալ" className="active" click={logout} />
+              <Button
+                text="Դուրս գալ"
+                className="active media"
+                click={logout}
+              />
             </div>
           ) : (
             <div className="no-auth">
-              <Link to={"/log/"} className="btn active">
+              <Link to={"/log/"} className="btn active media">
                 Մուտք գործել
               </Link>
-              <Link to={"/reg/"} className="btn">
+              <Link to={"/reg/"} className="btn media">
                 Գրանցվել
               </Link>
             </div>
           )}
         </div>
+      </div>
+      <div className="container mobile">
+        <Link to={"/"} className="logo">
+          <img src="/logo192.png" alt="No img" />
+          <p className="name">
+            <span>International Platform for</span>
+            <span>Import and Export</span>
+          </p>
+          <p className="attr">IPIEX</p>
+        </Link>
+        <div className="account">
+          {auth ? (
+            <div className="auth">
+              <Link to={"/mypage/"} className="btn">
+                Իմ էջը
+              </Link>
+              <Button
+                text="Դուրս գալ"
+                className="active media"
+                click={logout}
+              />
+            </div>
+          ) : (
+            <div className="no-auth">
+              <Link to={"/log/"} className="btn active media">
+                Մուտք գործել
+              </Link>
+              <Link to={"/reg/"} className="btn media">
+                Գրանցվել
+              </Link>
+            </div>
+          )}
+        </div>
+      </div>
+      <div className="input container">
+        <Search searchProduct={searchProduct} />
       </div>
       <Outlet />
     </header>
