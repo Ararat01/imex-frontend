@@ -6,7 +6,7 @@ import checkAuth from "../../checkAuth";
 import Button from "../../ui/Button/Button";
 import { useNavigate } from "react-router-dom";
 
-export default function Header({ searchProduct }) {
+export default function Header({ search = false, searchProduct }) {
   const auth = checkAuth();
   const navigate = useNavigate();
 
@@ -25,9 +25,13 @@ export default function Header({ searchProduct }) {
             <span>Import and Export</span>
           </p>
         </Link>
-        <div>
-          <Search searchProduct={searchProduct} />
-        </div>
+        {search ? (
+          <div className="container">
+            <Search searchProduct={searchProduct} />
+          </div>
+        ) : (
+          <></>
+        )}
         <div className="account">
           {auth ? (
             <div className="auth">
@@ -64,7 +68,7 @@ export default function Header({ searchProduct }) {
         <div className="account">
           {auth ? (
             <div className="auth">
-              <Link to={"/mypage/"} className="btn">
+              <Link to={"/mypage/"} className="btn media">
                 Իմ էջը
               </Link>
               <Button
@@ -85,9 +89,14 @@ export default function Header({ searchProduct }) {
           )}
         </div>
       </div>
-      <div className="input container">
-        <Search searchProduct={searchProduct} />
-      </div>
+      {search ? (
+        <div className="input container">
+          <Search searchProduct={searchProduct} />
+        </div>
+      ) : (
+        <></>
+      )}
+
       <Outlet />
     </header>
   );

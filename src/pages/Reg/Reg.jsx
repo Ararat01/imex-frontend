@@ -71,7 +71,7 @@ export const Reg = () => {
   return (
     <>
       <Header />
-      <div className="container form">
+      <div className="container regForm">
         <form action="">
           <div className="flex mb10">
             <Switcher

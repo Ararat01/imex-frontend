@@ -1,4 +1,4 @@
-.form {
+.regForm {
     display: flex;
     align-items: center;
     justify-content: center;
@@ -10,7 +10,8 @@
         flex-direction: column;
         justify-content: center;
         padding: 40px 0;
-        min-width: 500px;
+        max-width: 500px;
+        width: 100%;
 
         .mb10 {
             margin-bottom: 10px;
@@ -36,5 +37,6 @@
     a {
         color: var(--blue);
         text-decoration: underline;
+        padding-bottom: 20px;
     }
 }

@@ -5,11 +5,12 @@ import { Filters } from "./../../components/Filters/Filters.jsx";
 import "./Main.scss";
 import axios from "axios";
 import Header from "./../../components/Header/Header.jsx";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import API_URL from "../../config.js";
 
 export const Main = () => {
-  const [category, setCategory] = useState("all");
+  const { categoryHr} = useParams();
+  const [category, setCategory] = useState(categoryHr || "all");
   const [products, setProducts] = useState([]);
   const [switcherValue, setSwitcherValue] = useState("Ներմուծում");
   const navigate = useNavigate();
@@ -28,8 +29,14 @@ export const Main = () => {
   }, [category]);
   return (
     <div>
-      <Header searchProduct={getSearchProducts} />
-      <Categories category={category} change={setCategory} />
+      <Header search searchProduct={getSearchProducts} />
+      <Categories
+        category={category}
+        change={(val) => {
+          setCategory(val);
+          navigate(`/${val}`);
+        }}
+      />
       <Filters
         switcherValue={switcherValue}
         setSwitcherValue={setSwitcherValue}
@@ -46,7 +53,7 @@ export const Main = () => {
                       name={prod.name}
                       img={prod.images[0]}
                       price={prod.price}
-                      openProduct={() => navigate(`product/${prod._id}`)}
+                      openProduct={() => navigate(`/product/${prod._id}`)}
                     />
                   </div>
                 );

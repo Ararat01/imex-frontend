@@ -58,10 +58,7 @@ export const CreateProd = () => {
       price: "",
       category: "",
       subcategory: "",
-      list: [
-        { key: "", value: "" },
-        { key: "", value: "" },
-      ],
+      list: [],
     },
     mode: "onChange",
   });
@@ -102,28 +99,8 @@ export const CreateProd = () => {
   return (
     <>
       <Header />
-      <div className="container form">
+      <div className="container prodForm">
         <form action="">
-          {/* <div className="flex mb10">
-            <Switcher
-              rightText="ԱՁ"
-              leftText="ՍՊԸ"
-              selected={switcherValue}
-              changeSelect={changeSwitcher}
-            />
-            <Select
-              text="Տիպ:"
-              getValue={getSelectValue}
-              def={selectValue}
-              options={[
-                "Արտահանում",
-                "Ներմուծում",
-                "Բանկ",
-                "Ապահովագրական ընկերություններ",
-                "Լոգիստիկ կազմակերպություն",
-              ]}
-            />
-          </div> */}
           <input
             className="mb10"
             placeholder="Անվանում*"

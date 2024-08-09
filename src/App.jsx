@@ -12,6 +12,7 @@ function App() {
     <Router>
       <div className="App">
         <Routes>
+          <Route path="/:categoryHr" element={<Main />} />
           <Route path="/" element={<Main />} />
           <Route path="log/" element={<Login />} />
           <Route path="reg/" element={<Reg />} />

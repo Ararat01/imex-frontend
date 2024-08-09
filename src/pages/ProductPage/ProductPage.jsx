@@ -30,9 +30,7 @@ export const ProductPage = () => {
           </div>
           <div className="product container">
             <div className="product_images">
-              <div className="product_images-carousel">
-                <img src={product.images[imageIndex]} alt="" />;
-              </div>
+              <img src={product.images[imageIndex]} alt="" />
               <div className="product_images-select">
                 {product.images.map((src, i) => {
                   return (

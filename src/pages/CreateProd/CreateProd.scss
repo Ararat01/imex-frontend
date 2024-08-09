@@ -1,4 +1,4 @@
-.form {
+.prodForm {
     display: flex;
     align-items: center;
     justify-content: center;
@@ -10,8 +10,8 @@
         flex-direction: column;
         justify-content: center;
         padding: 40px 0;
-        min-width: 500px;
-
+        max-width: 500px;
+        width: 100%;
         .mb10 {
             margin-bottom: 10px;
         }
@@ -20,6 +20,7 @@
             align-items: center;
             justify-content: space-between;
             .controller {
+                flex: 1;
                 margin-right: 10px;
             }
             .delete {
@@ -38,9 +39,11 @@
         input::placeholder {
             font-size: 15px;
         }
+        
         input,
         textarea {
-            padding: 10px 25px;
+            width: 100%;
+            padding: 10px 20px;
             border-radius: 15px;
             font-size: 18px;
             border: 1px solid var(--gray);

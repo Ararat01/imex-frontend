@@ -1,7 +1,7 @@
 .filters {
     display: flex;
     align-items: center;
-    // padding: 25px 0;
+    justify-content: space-between;
     &_sort {
         margin-left: 20px;
         display: flex;

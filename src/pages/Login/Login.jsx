@@ -32,7 +32,7 @@ export const Login = () => {
   return (
     <>
       <Header />
-      <div className="container form">
+      <div className="container logForm">
         <form onSubmit={handleSubmit(onSubmit)}>
           <input
             className="mb10"

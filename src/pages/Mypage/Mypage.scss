@@ -2,7 +2,7 @@
     display: flex;
     justify-content: space-between;
     &_info {
-        width: 45%;
+        width: 50%;
         &-name {
             display: flex;
             justify-content: space-between;
@@ -51,15 +51,11 @@
     }
 }
 .myProducts {
-    display: flex;
-    align-items: stretch;
-    flex-wrap: wrap;
     padding: 40px 0;
     .add {
         background-color: var(--blue);
         border-radius: 15px;
         padding: 15px;
-        width: 180px;
         text-align: center;
         display: flex;
         align-items: center;
@@ -70,7 +66,7 @@
             svg {
                 transform: scale(1.1);
             }
-        } 
+        }
         &:disabled {
             background-color: var(--gray);
             cursor: default;
@@ -78,10 +74,10 @@
                 svg {
                     transform: scale(1);
                 }
-            } 
+            }
         }
         svg {
-            transition: .3s;
+            transition: 0.3s;
             width: 40px;
         }
         span {
@@ -90,7 +86,66 @@
             margin-bottom: 15px;
         }
     }
+}
+
+.myProducts {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    align-items: stretch;
+    flex-wrap: wrap;
     .child {
-        margin: 10px;
+        width: 18%;
+        margin: 1%;
+    }
+}
+
+@media screen and (max-width: 900px) {
+    .user {
+        flex-direction: column;
+        &_info {
+            width: 100%;
+            &-table {
+                max-width: 500px;
+            }
+        }
+        &_services {
+            width: 100%;
+            max-width: 500px;
+        }
+    }
+    .myProducts {
+        .child {
+            width: 22%;
+            margin: 1.5%;
+        }
+    }
+}
+
+@media screen and (max-width: 650px) {
+    .myProducts {
+        .child {
+            width: 31%;
+            margin: 1%;
+        }
+    }
+}
+
+@media screen and (max-width: 480px) {
+    .myProducts {
+        .child {
+            width: 46%;
+            margin: 2%;
+        }
+    }
+    .user {
+        &_info-table div {
+            p {
+                font-size: 16px;
+            }
+            span {
+                font-size: 15px;
+            }
+        }
     }
 }
