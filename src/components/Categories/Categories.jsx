@@ -16,7 +16,6 @@ export default function Categories({ category = "", change }) {
       .get(API_URL + "/export/get")
       .then(({ data }) => {
         setCategories(data);
-        // setCurrent(data[0].name);
       })
       .catch((err) => console.log(err));
   }, []);

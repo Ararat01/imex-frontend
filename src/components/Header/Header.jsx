@@ -5,6 +5,7 @@ import { Link, Outlet } from "react-router-dom";
 import checkAuth from "../../checkAuth";
 import Button from "../../ui/Button/Button";
 import { useNavigate } from "react-router-dom";
+import LanguageSwitcher from "./../../ui/LangSwitcher/LangSwitcher";
 
 export default function Header({ search = false, searchProduct }) {
   const auth = checkAuth();
@@ -96,7 +97,9 @@ export default function Header({ search = false, searchProduct }) {
       ) : (
         <></>
       )}
-
+      <div className="lang">
+        <LanguageSwitcher />
+      </div>
       <Outlet />
     </header>
   );

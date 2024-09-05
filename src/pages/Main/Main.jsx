@@ -1,18 +1,22 @@
 import React, { useEffect, useState } from "react";
+import { useTranslation } from "react-i18next";
+import axios from "axios";
+import { useNavigate, useParams } from "react-router-dom";
+
 import { Card } from "./../../components/Card/Card.jsx";
 import Categories from "./../../components/Categories/Categories.jsx";
 import { Filters } from "./../../components/Filters/Filters.jsx";
-import "./Main.scss";
-import axios from "axios";
 import Header from "./../../components/Header/Header.jsx";
-import { useNavigate, useParams } from "react-router-dom";
 import API_URL from "../../config.js";
+import Button from "../../ui/Button/Button.jsx";
+import "./Main.scss";
 
 export const Main = () => {
-  const { categoryHr} = useParams();
+  const { categoryHr } = useParams();
+  const { t } = useTranslation();
   const [category, setCategory] = useState(categoryHr || "all");
   const [products, setProducts] = useState([]);
-  const [switcherValue, setSwitcherValue] = useState("Ներմուծում");
+  const [switcherValue, setSwitcherValue] = useState("import");
   const navigate = useNavigate();
   const getSearchProducts = (data) => {
     setProducts(data);
@@ -30,11 +34,28 @@ export const Main = () => {
   return (
     <div>
       <Header search searchProduct={getSearchProducts} />
+      <div className="container">
+        <div className="about">
+          <p>{t('about')}</p>
+          <div className="about-contact">
+            <p>Կապնվել</p>
+            <Button
+              className="active"
+              text={"Email"}
+              click={() =>
+                window.open(
+                  "https://mail.google.com/mail/?view=cm&fs=1&to=ipiex.llc@gmail.com&su=sub&body=hi"
+                )
+              }
+            />
+          </div>
+        </div>
+      </div>
       <Categories
         category={category}
         change={(val) => {
           setCategory(val);
-          navigate(`/${val}`);
+          navigate(`${val}`);
         }}
       />
       <Filters
@@ -53,7 +74,7 @@ export const Main = () => {
                       name={prod.name}
                       img={prod.images[0]}
                       price={prod.price}
-                      openProduct={() => navigate(`/product/${prod._id}`)}
+                      openProduct={() => navigate(`product/${prod._id}`)}
                     />
                   </div>
                 );

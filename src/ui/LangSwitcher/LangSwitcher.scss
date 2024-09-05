@@ -1,0 +1,48 @@
+.langSw {
+    display: inline-flex;
+    align-items: center;
+    .selected {
+        z-index: 1;
+        position: absolute;
+        left: 0;
+        right: 0;
+        top: 0;
+        svg {
+            width: 100%;
+            transform: scaleY(0.7);
+        }
+        &:hover {
+            & + .langSw-select {
+                opacity: 1;
+                z-index: 1;
+            }
+        }
+    }
+    &-select {
+        opacity: 0;
+        display: flex;
+        align-items: center;
+        flex-direction: column;
+        background-color: var(--gray);
+        padding: 5px;
+        border-radius: 5px;
+        transition: all 0.3s;
+        &:hover {
+            opacity: 1;
+            z-index: 1;
+        }
+        button {
+            background-color: transparent;
+            border: none;
+            width: 42px;
+            height: 28px;
+            &:not(:first-child) {
+                margin-top: 3px;
+            }
+        }
+        svg {
+            height: 100%;
+            transform: scaleX(1.5);
+        }
+    }
+}

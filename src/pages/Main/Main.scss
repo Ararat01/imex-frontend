@@ -8,6 +8,23 @@
         margin: 1%;
     }
 }
+.about {
+    border: 1px solid var(--gray);
+    border-radius: 10px;
+    padding: 20px;
+    p {
+        font-size: 18px;
+    }
+    &-contact {
+        display: flex;
+        justify-content: flex-end;
+        margin-top: 15px;
+        align-items: center;
+        p {
+            margin-right: 10px;
+        }
+    }
+}
 
 @media screen and (max-width: 900px) {
     .products {
@@ -35,4 +52,3 @@
         }
     }
 }
-

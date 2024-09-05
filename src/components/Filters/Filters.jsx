@@ -12,8 +12,8 @@ export const Filters = ({ switcherValue, setSwitcherValue }) => {
     <div className="container">
       <div className="filters">
         <Switcher
-          leftText="Արտահանում"
-          rightText="Ներմուծում"
+          leftText="export"
+          rightText="import"
           selected={switcherValue}
           changeSelect={changeSwitcher}
         />
