@@ -93,10 +93,15 @@ export const CreateProd = () => {
         ...formValues,
         ...selectorValues,
         images,
+        userId: user._id,
       };
 
       axios
-        .post(`${API_URL}/product/createCar`, values)
+        .post(
+          `${API_URL}/product/createCar`,
+          { values },
+          { headers: { Authorization: token } }
+        )
         .then((res) => {
           navigate("/");
         })
