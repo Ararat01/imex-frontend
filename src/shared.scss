@@ -4,6 +4,12 @@
     padding: 0 10px;
 }
 
+input[type="number"]::-webkit-inner-spin-button,
+input[type="number"]::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
 @media screen and (max-width: 1300px) {
     .container {
         max-width: 1000px;

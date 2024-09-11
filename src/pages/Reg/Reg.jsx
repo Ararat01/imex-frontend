@@ -83,7 +83,7 @@ export const Reg = () => {
             <Select
               text="Տիպ:"
               getValue={getSelectValue}
-              def={selectValue}
+              defo={selectValue}
               options={[
                 "Արտահանում",
                 "Ներմուծում",

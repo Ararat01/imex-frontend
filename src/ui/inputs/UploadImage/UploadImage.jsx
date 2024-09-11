@@ -9,10 +9,12 @@ import axios from "axios";
 
 import "./UploadImage.scss";
 import API_URL from "../../../config";
+import { useTranslation } from "react-i18next";
 
 const UploadImage = forwardRef((props, ref) => {
   const fileInputRef = useRef(null);
   const [loadedLogoName, setName] = useState("");
+  const {t} = useTranslation()
 
   const [files, setFiles] = useState([]);
 
@@ -59,10 +61,10 @@ const UploadImage = forwardRef((props, ref) => {
         onChange={handleFileChange}
       />
       <label htmlFor="fileInput" className="file-upload-button">
-        Choose Files
+        {t("chooseFile")}
       </label>
       <span id="fileName" className="file-name">
-        {loadedLogoName || "No files chosen"}
+        {loadedLogoName || t("noFiles")}
       </span>
     </div>
   );

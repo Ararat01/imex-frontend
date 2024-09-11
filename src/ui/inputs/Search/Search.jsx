@@ -2,11 +2,13 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import "./Search.scss";
 import API_URL from "../../../config";
+import { useTranslation } from "react-i18next";
 
 export default function Search({searchProduct}) {
   const [data, setData] = useState([]);
   const [isFocused, setIsFocused] = useState(false);
   const [searchQuery, setSearchQuery] = useState("");
+  const { t } = useTranslation();
 
   const handleSearchChange = (input) => {
     setSearchQuery(input.target.value);
@@ -27,7 +29,7 @@ export default function Search({searchProduct}) {
         <input
           type="text"
           className="search-input"
-          placeholder="Search…"
+          placeholder={t("search")}
           value={searchQuery}
           onChange={handleSearchChange}
           onFocus={() => setIsFocused(true)}

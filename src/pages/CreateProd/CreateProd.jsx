@@ -9,11 +9,13 @@ import { Controller, useFieldArray, useForm } from "react-hook-form";
 import UploadImages from "../../ui/inputs/UploadImage/UploadImage";
 import API_URL from "../../config";
 import axios from "axios";
+import { useTranslation } from "react-i18next";
 
 export const CreateProd = () => {
   const navigate = useNavigate();
   const [user, setUser] = useState(null);
   const token = window.localStorage.getItem("token");
+  const { t } = useTranslation();
 
   // const [switcherValue, setSwitcherValue] = useState("ԱՁ");
   // const changeSwitcher = (val) => {
@@ -50,23 +52,34 @@ export const CreateProd = () => {
     getValues,
     formState: { errors },
     trigger,
-    control,
   } = useForm({
     defaultValues: {
-      name: "",
       info: "",
       price: "",
-      category: "",
-      subcategory: "",
-      list: [],
+      make: "",
+      model: "",
+      vin: "",
+      year: "",
+      mileage: "",
+      color: "",
     },
     mode: "onChange",
   });
 
-  const { fields, append, remove } = useFieldArray({
-    control,
-    name: "list",
+  const [selectorValues, setSelValues] = useState({
+    market: "",
+    driveTrain: "",
+    handDrive: "",
+    bodyStyle: "",
+    gearBox: "",
+    currency: "",
+    km: "",
+    engine: "",
   });
+  const setSelector = (key, val) => {
+    selectorValues[key] = val;
+    console.log(selectorValues);
+  };
 
   const handleRegister = async () => {
     console.log(getValues());
@@ -78,17 +91,12 @@ export const CreateProd = () => {
       const formValues = getValues();
       const values = {
         ...formValues,
-        images: images,
-        userId: user._id,
-        type: user.type,
-        contact: user.phone,
-
-        // type: switcherValue,
-        // kind: selectValue,
+        ...selectorValues,
+        images,
       };
 
       axios
-        .post(`${API_URL}/product/create`, values)
+        .post(`${API_URL}/product/createCar`, values)
         .then((res) => {
           navigate("/");
         })
@@ -103,68 +111,95 @@ export const CreateProd = () => {
         <form action="">
           <input
             className="mb10"
-            placeholder="Անվանում*"
+            placeholder={t("make")}
             type="text"
             autoComplete="off"
             name="name"
-            {...register("name")}
+            {...register("make")}
           />
           <input
             className="mb10"
-            placeholder="Գին"
+            placeholder={t("model")}
             type="text"
             autoComplete="off"
-            name="price"
-            {...register("price")}
+            name="model"
+            {...register("model")}
           />
           <input
             className="mb10"
-            placeholder="Կատեգորիա"
+            placeholder={t("year")}
             type="text"
             autoComplete="off"
-            name="category"
-            {...register("category")}
+            name="year"
+            {...register("year")}
+          />
+          <div className="price mb10">
+            <input
+              placeholder={t("price")}
+              type="number"
+              autoComplete="off"
+              name="price"
+              {...register("price")}
+            />
+            <Select
+              getValue={(val) => setSelector("currency", val)}
+              defo="Dollar $"
+              options={["Dollar $", "Рубли ₽", "Դրամ ֏"]}
+            />
+          </div>
+          <div className="price mb10">
+            <input
+              placeholder={t("mileage")}
+              type="number"
+              autoComplete="off"
+              name="mileage"
+              {...register("mileage")}
+            />
+            <Select
+              getValue={(val) => setSelector("km", val)}
+              defo={t("km")}
+              options={["km", "mil"]}
+            />
+          </div>
+          <input
+            className="mb10"
+            placeholder={t("vin")}
+            type="text"
+            autoComplete="off"
+            name="vin"
+            {...register("vin")}
           />
           <input
             className="mb10"
-            placeholder="Ենթակատեգորիա"
+            placeholder={t("color")}
             type="text"
             autoComplete="off"
-            name="subcategory"
-            {...register("subcategory")}
+            name="color"
+            {...register("color")}
           />
-          {getValues("list").map((item, index) => (
-            <div key={index} className="mb10 field">
-              <div className="controller">
-                {" "}
-                <Controller
-                  name={`list[${index}].key`}
-                  control={control}
-                  render={({ field }) => (
-                    <input {...field} placeholder="" autoComplete="off" />
-                  )}
-                />
-              </div>
-              <div className="controller">
-                <Controller
-                  name={`list[${index}].value`}
-                  control={control}
-                  render={({ field }) => (
-                    <input {...field} placeholder="" autoComplete="off" />
-                  )}
-                />
-              </div>
 
-              <button
-                type="button"
-                className="delete"
-                onClick={() => remove(index)}
-              >
-                {" "}
+          <input
+            className="mb10"
+            placeholder={t("location")}
+            type="text"
+            autoComplete="off"
+            name="location"
+            {...register("location")}
+          />
+          <div className="selectors">
+            <div className="selectors_line mb10">
+              <p className="tooltip">
+                {t("market")}
+                <span class="tooltip-text">
+                  {t("prMarketExp")}
+                  <hr />
+                  {t("scMarketExp")}
+                </span>
                 <svg
-                  viewBox="0 0 1024 1024"
+                  className="quest"
+                  viewBox="0 0 24 24"
+                  fill="none"
                   xmlns="http://www.w3.org/2000/svg"
-                  fill="#000000"
                 >
                   <g id="SVGRepo_bgCarrier" strokeWidth="0"></g>
                   <g
@@ -173,24 +208,99 @@ export const CreateProd = () => {
                     strokeLinejoin="round"
                   ></g>
                   <g id="SVGRepo_iconCarrier">
+                    {" "}
                     <path
-                      fill="#f84646"
-                      d="M352 192V95.936a32 32 0 0 1 32-32h256a32 32 0 0 1 32 32V192h256a32 32 0 1 1 0 64H96a32 32 0 0 1 0-64h256zm64 0h192v-64H416v64zM192 960a32 32 0 0 1-32-32V256h704v672a32 32 0 0 1-32 32H192zm224-192a32 32 0 0 0 32-32V416a32 32 0 0 0-64 0v320a32 32 0 0 0 32 32zm192 0a32 32 0 0 0 32-32V416a32 32 0 0 0-64 0v320a32 32 0 0 0 32 32z"
-                    ></path>
+                      d="M10.125 8.875C10.125 7.83947 10.9645 7 12 7C13.0355 7 13.875 7.83947 13.875 8.875C13.875 9.56245 13.505 10.1635 12.9534 10.4899C12.478 10.7711 12 11.1977 12 11.75V13"
+                      stroke="#000000"
+                      strokeWidth="1.5"
+                      strokeLinecap="round"
+                    ></path>{" "}
+                    <circle cx="12" cy="16" r="1" fill="#000000"></circle>{" "}
+                    <path
+                      d="M7 3.33782C8.47087 2.48697 10.1786 2 12 2C17.5228 2 22 6.47715 22 12C22 17.5228 17.5228 22 12 22C6.47715 22 2 17.5228 2 12C2 10.1786 2.48697 8.47087 3.33782 7"
+                      stroke="#000000"
+                      strokeWidth="1.5"
+                      strokeLinecap="round"
+                    ></path>{" "}
                   </g>
                 </svg>
-              </button>
+              </p>
+
+              <Select
+                getValue={(val) => setSelector("market", val)}
+                defo={`${t("select")} ${t("market")}`}
+                options={["primaryMarket", "secondaryMarket"]}
+              />
             </div>
-          ))}
-          <button
-            type="button"
-            className="btn mb10"
-            onClick={() => append({ key: "", value: "" })}
-          >
-            Ավելացնել դաշտ
-          </button>
+            <div className="selectors_line mb10">
+              <p>{t("bodyStyle")}</p>
+              <Select
+                getValue={(val) => setSelector("bodyStyle", val)}
+                defo={`${t("select")} ${t("bodyStyle")}`}
+                options={[
+                  "sedan",
+                  "hatchback",
+                  "wagon",
+                  "coupe",
+                  "convertible",
+                  "suv",
+                  "pickup",
+                  "minivan",
+                  "van",
+                  "limousine",
+                ]}
+              />
+            </div>
+            <div className="selectors_line mb10">
+              <p>{t("handDrive")}</p>
+              <Select
+                getValue={(val) => setSelector("handDrive", val)}
+                defo={`${t("select")} ${t("handDrive")}`}
+                options={["left", "right", "rightToLeft"]}
+              />
+            </div>
+            <div className="selectors_line mb10">
+              <p>{t("gearBox")}</p>
+              <Select
+                getValue={(val) => setSelector("gearBox", val)}
+                defo={`${t("select")} ${t("gearBox")}`}
+                options={[
+                  "manual",
+                  "automatic",
+                  "semiAuto",
+                  "variable",
+                  "other",
+                ]}
+              />
+            </div>
+            <div className="selectors_line mb10">
+              <p>{t("engine")}</p>
+              <Select
+                getValue={(val) => setSelector("engine", val)}
+                defo={`${t("select")} ${t("engine")}`}
+                options={[
+                  "gasoline",
+                  "gas",
+                  "diesel",
+                  "hybrid",
+                  "electric",
+                  "hydrogen",
+                  "noEngine",
+                  "gasolineAndGas",
+                ]}
+              />
+            </div>
+            <div className="selectors_line mb10">
+              <p>{t("driveTrain")}</p>
+              <Select
+                getValue={(val) => setSelector("driveTrain", val)}
+                defo={`${t("select")} ${t("driveTrain")}`}
+                options={["fwd", "rwd", "awd"]}
+              />
+            </div>
+          </div>
           <label className="mb10" htmlFor="info">
-            Արտադրանքի մեկնաբանում
+            {t("addInfo")}
           </label>
           <textarea
             className="mb10"
@@ -199,10 +309,10 @@ export const CreateProd = () => {
             id="info"
             {...register("info")}
           ></textarea>
-          <span className="mb10">Բեռնեք արտադրանքի նկարները</span>
+          <span className="mb10">{t("uploadImg")}</span>
           <UploadImages multiple={true} ref={uploadImageRef} />
           <br className="mb10" />
-          <Button text="Ավելացնել" click={handleRegister} />
+          <Button text={t("add")} click={handleRegister} />
         </form>
       </div>
     </>

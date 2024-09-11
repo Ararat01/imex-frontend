@@ -1,25 +1,28 @@
 import React, { useEffect, useState } from "react";
 import "./Select.scss";
+import { useTranslation } from "react-i18next";
 
 export const Select = ({
-  def = "Տիպ",
+  defo = "",
   options = ["Արտահանում", "Ներմուծում"],
-  text="",
-  getValue = () => {}
+  text = "",
+  getValue = () => {},
 }) => {
   const [show, setShow] = useState(false);
-  const [option, setOption] = useState(def);
+  const { t } = useTranslation();
+  const [option, setOption] = useState();
+
   const changeOption = (opt) => {
     setOption(opt);
   };
   useEffect(() => {
-    getValue(option)
-  }, [option])
+    getValue(option);
+  }, [option]);
   return (
     <div className="select">
       <span>{text}</span>
       <button onClick={() => setShow(!show)} type="button">
-        <span>{option}</span>
+        <span>{t(option) || defo}</span>
         <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
           <g id="SVGRepo_bgCarrier" strokeWidth="0"></g>
           <g
@@ -45,12 +48,12 @@ export const Select = ({
             <button
               type="button"
               key={i}
-              onClick={({target}) => {
-                changeOption(target.innerText);
-                setShow(false)
+              onClick={() => {
+                changeOption(options[i]);
+                setShow(false);
               }}
             >
-              {text}
+              {t(text)}
             </button>
           );
         })}

@@ -1,6 +1,6 @@
 .select {
     position: relative;
-    z-index: 10;
+    display: inline-flex;
     span {
         margin-right: 10px;
     }
@@ -20,6 +20,8 @@
         text-align: center;
         transition: all 0.2s;
         background-color: transparent;
+        text-emphasis: none;
+        white-space: nowrap;
         &:disabled {
             cursor: default;
         }
@@ -36,7 +38,7 @@
             display: flex;
         }
         position: absolute;
-        right: 0;
+        right: -1px;
         top: 100%;
         width: max-content;
         display: none;
@@ -54,11 +56,12 @@
         button {
             border: none;
             border-radius: 0px;
-            background-color: var(--gray);
+            background: var(--gray);
+            z-index: 100;
 
             &:hover {
                 color: var(--dark-blue);
-                background-color: var(--white);
+                background: var(--white);
             }
         }
     }

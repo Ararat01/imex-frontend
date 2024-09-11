@@ -3,6 +3,23 @@
     align-items: center;
     justify-content: center;
     flex-direction: column;
+    .quest {
+        width: 20px;
+        margin-left: 10px;
+    }
+    .selectors {
+        &_line {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            p {
+                width: 50%;
+                text-align: center;
+                display: flex;
+                align-items: center;
+            }
+        }
+    }
     form {
         display: flex;
         align-items: stretch;
@@ -12,6 +29,13 @@
         padding: 40px 0;
         max-width: 500px;
         width: 100%;
+        .price {
+            display: flex;
+            align-items: center;
+            input {
+                margin-right: 10px;
+            }
+        }
         .mb10 {
             margin-bottom: 10px;
         }
@@ -39,7 +63,7 @@
         input::placeholder {
             font-size: 15px;
         }
-        
+
         input,
         textarea {
             width: 100%;
@@ -56,5 +80,44 @@
     a {
         color: var(--blue);
         text-decoration: underline;
+    }
+}
+.tooltip {
+    position: relative;
+    display: inline-block;
+    cursor: pointer;
+    &:hover .tooltip-text {
+        visibility: visible;
+        opacity: 1;
+    }
+    &-text {
+        visibility: hidden;
+        width: 350px;
+        background-color: #555;
+        color: #fff;
+        text-align: center;
+        border-radius: 5px;
+        padding: 5px;
+        position: absolute;
+        z-index: 1;
+        bottom: 125%; /* Position the tooltip above the question mark */
+        left: 50%;
+        margin-left: -100px; /* Center the tooltip */
+        opacity: 0;
+        transition: opacity 0.3s;
+        padding: 15px;
+        hr {
+            margin: 10px;
+        }
+        &::after {
+            content: "";
+            position: absolute;
+            top: 100%;
+            left: 50%;
+            margin-left: -5px;
+            border-width: 5px;
+            border-style: solid;
+            border-color: #555 transparent transparent transparent;
+        }
     }
 }

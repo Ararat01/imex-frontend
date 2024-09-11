@@ -3,10 +3,12 @@ import "./Categories.scss";
 import Button from "../../ui/Button/Button";
 import axios from "axios";
 import API_URL from "../../config";
+import { useTranslation } from "react-i18next";
 
 export default function Categories({ category = "", change }) {
   const [categories, setCategories] = useState([]);
   const [more, setMore] = useState(false);
+  const {t} = useTranslation()
   const changeCategory = (e) => {
     setMore(false);
     change(e.innerText);

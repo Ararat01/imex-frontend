@@ -132,7 +132,7 @@ export const Mypage = () => {
                                 strokeLinecap="round"
                               ></path>{" "}
                             </g>
-                          </svg>{" "}
+                          </svg>
                         </button>
                       )}
                     </span>

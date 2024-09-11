@@ -2,8 +2,10 @@ import React, { useState } from "react";
 import "./Filters.scss";
 import { Switcher } from "../../ui/inputs/Switcher/Switcher";
 import { Select } from "./../../ui/inputs/Select/Select";
+import { useTranslation } from "react-i18next";
 
 export const Filters = ({ switcherValue, setSwitcherValue }) => {
+  const { t } = useTranslation();
   const changeSwitcher = (val) => {
     setSwitcherValue(val);
   };
@@ -18,10 +20,10 @@ export const Filters = ({ switcherValue, setSwitcherValue }) => {
           changeSelect={changeSwitcher}
         />
         <div className="filters_sort">
-          <span>Ֆիլտրել ըստ</span>
+          <span>{t("filterBy")}</span>
           <Select
-            def="Ռեյտինգի"
-            options={["Ռեյտինգի", "Գնի՝ Էժանից թանկ", "Գնի՝ Թանկից էժան"]}
+            defo=""
+            options={["Գնի՝ Էժանից թանկ", "Գնի՝ Թանկից էժան"]}
           />
         </div>
       </div>

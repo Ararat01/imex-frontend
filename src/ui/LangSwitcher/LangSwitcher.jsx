@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useTranslation } from "react-i18next";
 import "./LangSwitcher.scss";
 import { HyIcon } from "./HyIcon";
@@ -21,6 +21,10 @@ const LanguageSwitcher = () => {
 
     i18n.changeLanguage(lng);
   };
+
+  useEffect(() => {
+    i18n.changeLanguage(ln);
+  }, []);
 
   return (
     <div className="langSw">

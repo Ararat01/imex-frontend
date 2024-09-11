@@ -1,25 +1,28 @@
 import React, { useEffect } from "react";
 import "./Header.scss";
 import Search from "../../ui/inputs/Search/Search";
-import { Link, Outlet } from "react-router-dom";
+import { Link, Outlet, useParams } from "react-router-dom";
 import checkAuth from "../../checkAuth";
 import Button from "../../ui/Button/Button";
 import { useNavigate } from "react-router-dom";
 import LanguageSwitcher from "./../../ui/LangSwitcher/LangSwitcher";
+import { useTranslation } from "react-i18next";
 
 export default function Header({ search = false, searchProduct }) {
   const auth = checkAuth();
   const navigate = useNavigate();
+  const { ln } = useParams();
+  const { t } = useTranslation();
 
   const logout = () => {
     localStorage.removeItem("token");
-    navigate("/log");
+    navigate(`/${ln}/log`);
   };
 
   return (
     <header>
       <div className="container head">
-        <Link to={"/"} className="logo">
+        <Link to={`/${ln}`} className="logo">
           <img src="/logo192.png" alt="No img" />
           <p>
             <span>International Platform for</span>
@@ -36,22 +39,22 @@ export default function Header({ search = false, searchProduct }) {
         <div className="account">
           {auth ? (
             <div className="auth">
-              <Link to={"/mypage/"} className="btn">
-                Իմ էջը
+              <Link to={`/${ln}/mypage`} className="btn">
+                {t("myPage")}
               </Link>
               <Button
-                text="Դուրս գալ"
+                text={t("logout")}
                 className="active media"
                 click={logout}
               />
             </div>
           ) : (
             <div className="no-auth">
-              <Link to={"/log/"} className="btn active media">
-                Մուտք գործել
+              <Link to={`/${ln}/log`} className="btn active media">
+                {t("login")}
               </Link>
-              <Link to={"/reg/"} className="btn media">
-                Գրանցվել
+              <Link to={`/${ln}/reg`} className="btn media">
+                {t("register")}
               </Link>
             </div>
           )}
@@ -69,21 +72,21 @@ export default function Header({ search = false, searchProduct }) {
         <div className="account">
           {auth ? (
             <div className="auth">
-              <Link to={"/mypage/"} className="btn media">
-                Իմ էջը
+              <Link to={`/${ln}/mypage`} className="btn media">
+                {t("myPage")}
               </Link>
               <Button
-                text="Դուրս գալ"
+                text={t("logout")}
                 className="active media"
                 click={logout}
               />
             </div>
           ) : (
             <div className="no-auth">
-              <Link to={"/log/"} className="btn active media">
+              <Link to={`/${ln}/log`} className="btn active media">
                 Մուտք գործել
               </Link>
-              <Link to={"/reg/"} className="btn media">
+              <Link to={`/${ln}/reg`} className="btn media">
                 Գրանցվել
               </Link>
             </div>
