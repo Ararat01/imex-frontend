@@ -26,6 +26,10 @@ header {
         }
     }
     .account {
+        .no-auth {
+            display: flex;
+            align-items: center;
+        }
         .auth {
             display: flex;
             align-items: center;
@@ -66,6 +70,10 @@ header {
     }
     .account {
         font-size: 0;
+        .no-auth {
+            display: flex;
+            align-items: center;
+        }
         .auth {
             display: flex;
             align-items: center;
