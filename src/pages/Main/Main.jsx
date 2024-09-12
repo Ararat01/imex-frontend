@@ -11,9 +11,7 @@ import Button from "../../ui/Button/Button.jsx";
 import "./Main.scss";
 
 export const Main = () => {
-  const { categoryHr } = useParams();
   const { t } = useTranslation();
-  const [category, setCategory] = useState(categoryHr || "all");
   const [products, setProducts] = useState([]);
   const [switcherValue, setSwitcherValue] = useState("import");
   const navigate = useNavigate();
@@ -22,14 +20,14 @@ export const Main = () => {
   };
   useEffect(() => {
     axios
-      .post(API_URL + "/product/category", {
-        category: category,
-      })
+      .get(API_URL + "/product/getallcars")
       .then(({ data }) => {
+        console.log(data);
+
         setProducts(data);
       })
       .catch((err) => console.log(err));
-  }, [category]);
+  }, []);
   return (
     <div>
       <Header search searchProduct={getSearchProducts} />
@@ -50,13 +48,6 @@ export const Main = () => {
           </div>
         </div>
       </div>
-      {/* <Categories
-        category={category}
-        change={(val) => {
-          setCategory(val);
-          navigate(`${val}`);
-        }}
-      /> */}
       <div className="category container">
         <button>
           <img src="/images/1stmarket.png" alt="" />
@@ -78,21 +69,19 @@ export const Main = () => {
       />
       <div className="container">
         <div className="products">
-          {products.filter((el) => el.type === switcherValue).length ? (
-            products
-              .filter((el) => el.type === switcherValue)
-              .map((prod, i) => {
-                return (
-                  <div key={i} className="child">
-                    <Card
-                      name={prod.name}
-                      img={prod.images[0]}
-                      price={prod.price}
-                      openProduct={() => navigate(`product/${prod._id}`)}
-                    />
-                  </div>
-                );
-              })
+          {products.length ? (
+            products.map((prod, i) => {
+              return (
+                <div key={i} className="child">
+                  <Card
+                    name={`${prod.make} ${prod.model} . ${prod.year}`}
+                    img={prod.images[3]}
+                    price={`${prod.price} ${prod.currency}`}
+                    openProduct={() => navigate(`product/${prod._id}`)}
+                  />
+                </div>
+              );
+            })
           ) : (
             <div>
               <h4>Արտադրանք չի գտնվել</h4>

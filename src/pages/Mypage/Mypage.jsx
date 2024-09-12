@@ -5,7 +5,6 @@ import { useNavigate } from "react-router-dom";
 import checkAuth from "../../checkAuth";
 import API_URL from "../../config";
 import axios from "axios";
-import UploadImage from "./../../ui/inputs/UploadImage/UploadImage";
 import Services from "../../components/Services/Services";
 import { Card } from "../../components/Card/Card";
 

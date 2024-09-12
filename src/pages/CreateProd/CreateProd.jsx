@@ -10,21 +10,15 @@ import UploadImages from "../../ui/inputs/UploadImage/UploadImage";
 import API_URL from "../../config";
 import axios from "axios";
 import { useTranslation } from "react-i18next";
+import { LoadingCreating } from "../../ui/LoadingCreating/LoadingCreating";
 
 export const CreateProd = () => {
   const navigate = useNavigate();
   const [user, setUser] = useState(null);
+  const [showLoading, setShowLoading] = useState(false);
+  const [loaded, setLoaded] = useState(0);
   const token = window.localStorage.getItem("token");
   const { t } = useTranslation();
-
-  // const [switcherValue, setSwitcherValue] = useState("ԱՁ");
-  // const changeSwitcher = (val) => {
-  //   setSwitcherValue(val);
-  // };
-  // const [selectValue, setSelectValue] = useState("Արտահանում");
-  // const getSelectValue = (val) => {
-  //   setSelectValue(val);
-  // };
 
   useEffect(() => {
     axios
@@ -72,8 +66,8 @@ export const CreateProd = () => {
     handDrive: "",
     bodyStyle: "",
     gearBox: "",
-    currency: "",
-    km: "",
+    currency: "$",
+    km: "km",
     engine: "",
   });
   const setSelector = (key, val) => {
@@ -82,28 +76,42 @@ export const CreateProd = () => {
   };
 
   const handleRegister = async () => {
+    setShowLoading(true);
     console.log(getValues());
 
     const isFormValid = await trigger();
+    setLoaded(1);
     if (isFormValid) {
       const images = await handleImgSubmit();
-
+      setLoaded(2);
       const formValues = getValues();
       const values = {
         ...formValues,
         ...selectorValues,
+        mileage: selectorValues.mileage + selectorValues.km,
         images,
         userId: user._id,
       };
-
-      axios
-        .post(`${API_URL}/product/createCar`, values, {
-          headers: { Authorization: token },
-        })
-        .then((res) => {
-          navigate("/");
-        })
-        .catch((err) => console.log(err));
+      await new Promise((resolve) => setTimeout(resolve, 1000));
+      setLoaded(3);
+      try {
+        axios
+          .post(`${API_URL}/product/createCar`, values, {
+            headers: { Authorization: token },
+          })
+          .then(async (res) => {
+            setLoaded(4);
+            await new Promise((resolve) => setTimeout(resolve, 1000));
+            setShowLoading(false);
+            await new Promise((resolve) => setTimeout(resolve, 0));
+          })
+          .then(() => {
+            navigate("/hy");
+          })
+          .catch((err) => console.log(err));
+      } catch (e) {
+        console.log(e);
+      }
     }
   };
 
@@ -146,8 +154,8 @@ export const CreateProd = () => {
             />
             <Select
               getValue={(val) => setSelector("currency", val)}
-              defo="Dollar $"
-              options={["Dollar $", "Рубли ₽", "Դրամ ֏"]}
+              defo="$"
+              options={["$", "₽", "֏"]}
             />
           </div>
           <div className="price mb10">
@@ -193,9 +201,10 @@ export const CreateProd = () => {
             <div className="selectors_line mb10">
               <p className="tooltip">
                 {t("market")}
-                <span class="tooltip-text">
+                <span className="tooltip-text">
                   {t("prMarketExp")}
-                  <hr />
+                  <br />
+                  <br />
                   {t("scMarketExp")}
                 </span>
                 <svg
@@ -318,6 +327,7 @@ export const CreateProd = () => {
           <Button text={t("add")} click={handleRegister} />
         </form>
       </div>
+      <LoadingCreating loaded={loaded} show={showLoading} />
     </>
   );
 };

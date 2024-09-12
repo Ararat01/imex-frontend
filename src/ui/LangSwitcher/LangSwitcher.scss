@@ -1,24 +1,25 @@
 .langSw {
-    display: inline-flex;
     align-items: center;
-    .selected {
-        z-index: 1;
-        position: absolute;
-        left: 0;
-        right: 0;
-        top: 0;
-        svg {
-            width: 100%;
-            transform: scaleY(0.7);
-        }
-        &:hover {
-            & + .langSw-select {
-                opacity: 1;
-                z-index: 1;
-            }
+    width: 40px;
+    height: 28px;
+    position: relative;
+    margin-right: 15px;
+    .select {
+        height: 28px;
+        transform: scaleX(1.4287);
+        margin-left: 7px;
+    }
+    &:hover {
+        & + .langSw-select {
+            opacity: 1;
+            z-index: 1;
         }
     }
     &-select {
+        position: absolute;
+        margin: 0 !important;
+        top: -2px;
+        left: -2px;
         opacity: 0;
         display: flex;
         align-items: center;
@@ -34,8 +35,9 @@
         button {
             background-color: transparent;
             border: none;
-            width: 42px;
+            width: 40px;
             height: 28px;
+            margin: 2px 0 !important;
             &:not(:first-child) {
                 margin-top: 3px;
             }

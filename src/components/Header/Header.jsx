@@ -39,6 +39,7 @@ export default function Header({ search = false, searchProduct }) {
         <div className="account">
           {auth ? (
             <div className="auth">
+              <LanguageSwitcher />
               <Link to={`/${ln}/mypage`} className="btn">
                 {t("myPage")}
               </Link>
@@ -50,6 +51,7 @@ export default function Header({ search = false, searchProduct }) {
             </div>
           ) : (
             <div className="no-auth">
+              <LanguageSwitcher />
               <Link to={`/${ln}/log`} className="btn active media">
                 {t("login")}
               </Link>
@@ -72,6 +74,7 @@ export default function Header({ search = false, searchProduct }) {
         <div className="account">
           {auth ? (
             <div className="auth">
+              <LanguageSwitcher />
               <Link to={`/${ln}/mypage`} className="btn media">
                 {t("myPage")}
               </Link>
@@ -83,6 +86,7 @@ export default function Header({ search = false, searchProduct }) {
             </div>
           ) : (
             <div className="no-auth">
+              <LanguageSwitcher />
               <Link to={`/${ln}/log`} className="btn active media">
                 Մուտք գործել
               </Link>
@@ -100,9 +104,6 @@ export default function Header({ search = false, searchProduct }) {
       ) : (
         <></>
       )}
-      <div className="lang">
-        <LanguageSwitcher />
-      </div>
       <Outlet />
     </header>
   );

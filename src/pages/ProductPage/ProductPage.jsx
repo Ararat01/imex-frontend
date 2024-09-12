@@ -4,11 +4,29 @@ import Header from "../../components/Header/Header";
 import { useParams } from "react-router-dom";
 import axios from "axios";
 import API_URL from "../../config";
+import { useTranslation } from "react-i18next";
 
 export const ProductPage = () => {
   const { id } = useParams();
   const [product, setProduct] = useState(null);
   const [imageIndex, setImageIndex] = useState(0);
+  const notShow = [
+    "currency",
+    "_id",
+    "images",
+    "userId",
+    "createdAt",
+    "updatedAt",
+    "__v",
+    "info",
+    "price",
+    "videos",
+    "make",
+    "model",
+    "mileage",
+    "km",
+  ];
+  const { t } = useTranslation();
   useEffect(() => {
     axios
       .get(`${API_URL}/product/${id}`)
@@ -16,6 +34,7 @@ export const ProductPage = () => {
         console.log(data);
 
         setProduct(data);
+        console.log(Object.entries(product));
       })
       .catch((err) => console.log(err));
   }, [id]);
@@ -25,8 +44,7 @@ export const ProductPage = () => {
       {product ? (
         <>
           <div className="container path">
-            <span>{product.type + " > "}</span>
-            <span>{product.category}</span>
+            <span>{t(product.market)}</span>
           </div>
           <div className="product container">
             <div className="product_images">
@@ -46,18 +64,24 @@ export const ProductPage = () => {
               </div>
             </div>
             <div className="product_info">
-              <h3>{product.name}</h3>
-              <h4>{product.price}</h4>
-              {product.list ? (
+              <h3>{`${product.make} ${product.model}`}</h3>
+              <h4>{`${product.price} ${product.currency}`}</h4>
+              {product ? (
                 <div className="list">
-                  {product.list.map((el, i) => {
-                    return (
-                      <div key={i}>
-                        <p>{el.key}</p>
-                        <span>{el.value}</span>
-                      </div>
-                    );
-                  })}
+                  {Object.entries(product)
+                    .filter((el) => !notShow.includes(el[0]))
+                    .map((el, i) => {
+                      return (
+                        <div key={i}>
+                          <p>{t(el[0])}</p>
+                          <span>{t(el[1])}</span>
+                        </div>
+                      );
+                    })}
+                  <div>
+                    <p>{t("mileage")}</p>
+                    <span>{`${t(product.mileage)} ${t(product.km)}`}</span>
+                  </div>
                   <div className="contact">
                     <p>Կապնվել</p>
                     <a href="tel:+1234567890">

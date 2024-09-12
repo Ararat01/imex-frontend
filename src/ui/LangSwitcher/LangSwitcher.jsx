@@ -28,7 +28,7 @@ const LanguageSwitcher = () => {
 
   return (
     <div className="langSw">
-      <div className="selected">{ln === "hy" ? <HyIcon /> : <RuIcon />}</div>
+      <div className="select">{ln === "hy" ? <HyIcon /> : <RuIcon />}</div>
       <div className="langSw-select">
         <button type="button" onClick={() => handleLanguageChange("hy")}>
           <HyIcon />

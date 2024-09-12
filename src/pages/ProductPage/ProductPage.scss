@@ -50,12 +50,13 @@
     &_info {
         width: 50%;
         h3 {
-            font-size: 44px;
+            font-size: 40px;
             font-weight: 600;
         }
         h4 {
-            font-size: 34px;
+            font-size: 30px;
             font-weight: 500;
+            text-align: right;
         }
         .list {
             display: flex;
@@ -71,17 +72,17 @@
                 border-bottom: 1px solid var(--dark);
             }
             p {
-                font-size: 22px;
+                font-size: 18px;
                 font-weight: 500;
             }
             span {
-                font-size: 22px;
+                font-size: 18px;
                 font-weight: 400;
             }
         }
         .contact {
             a {
-                font-size: 22px;
+                font-size: 18px;
                 font-weight: 400;
                 display: flex;
                 align-items: center;
@@ -95,7 +96,7 @@
             }
         }
         &-text {
-            font-size: 20px;
+            font-size: 16px;
         }
     }
 }
@@ -122,22 +123,24 @@
         }
         &_info {
             h3 {
-                font-size: 32px;
+                font-size: 28px;
             }
             h4 {
-                font-size: 27px;
+                font-size: 23px;
                 font-weight: 300;
             }
             .list {
                 p {
-                    font-size: 18px;
+                    font-size: 14px;
                 }
                 span {
-                    font-size: 18px;
+                    font-size: 14px;
                 }
                 .contact {
                     a {
-                        font-size: 18px;}}
+                        font-size: 14px;
+                    }
+                }
             }
         }
     }
