@@ -52,7 +52,11 @@
     transform: translateZ(0);
     transition: all 0.2s;
     &:disabled {
+        background-color: var(--gray);
         cursor: default;
+        &:hover {
+            box-shadow: none;
+        }
     }
 }
 

@@ -1,6 +1,6 @@
 import React, { useRef, useState } from "react";
 import "./Reg.scss";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useNavigate, useParams } from "react-router-dom";
 import Button from "../../ui/Button/Button";
 import { Switcher } from "../../ui/inputs/Switcher/Switcher";
 import { Select } from "../../ui/inputs/Select/Select";
@@ -12,6 +12,7 @@ import axios from "axios";
 
 export const Reg = () => {
   const navigate = useNavigate();
+  const { ln } = useParams();
 
   const [switcherValue, setSwitcherValue] = useState("ԱՁ");
   const changeSwitcher = (val) => {
@@ -62,7 +63,7 @@ export const Reg = () => {
       axios
         .post(`${API_URL}/auth/register`, values)
         .then((res) => {
-          navigate("/log");
+          navigate(`/${ln}`);
         })
         .catch((err) => console.log(err));
     }

@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
 import axios from "axios";
-import { useNavigate, useParams } from "react-router-dom";
+import { Link, useNavigate, useParams } from "react-router-dom";
 
 import { Card } from "./../../components/Card/Card.jsx";
 import { Filters } from "./../../components/Filters/Filters.jsx";
@@ -12,6 +12,7 @@ import "./Main.scss";
 
 export const Main = () => {
   const { t } = useTranslation();
+  const { ln } = useParams();
   const [products, setProducts] = useState([]);
   const [switcherValue, setSwitcherValue] = useState("import");
   const navigate = useNavigate();
@@ -61,6 +62,16 @@ export const Main = () => {
             <h2>{t("secondaryMarket")}</h2>
           </div>
         </button>
+      </div>
+      <div className="container">
+        <div className="trade">
+          <img src="/images/tradein.png" alt="" />
+          <div className="trade_text">
+            <h2>Trade In</h2>
+            <p>{t("tradeIn")}</p>
+            <Button click={() => navigate(`/${ln}/`)} text={t("more")} />
+          </div>
+        </div>
       </div>
 
       <Filters

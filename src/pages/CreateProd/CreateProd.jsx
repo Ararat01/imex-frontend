@@ -1,6 +1,6 @@
 import React, { useEffect, useRef, useState } from "react";
 import "./CreateProd.scss";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useNavigate, useParams } from "react-router-dom";
 import Button from "../../ui/Button/Button";
 import { Switcher } from "../../ui/inputs/Switcher/Switcher";
 import { Select } from "../../ui/inputs/Select/Select";
@@ -19,6 +19,7 @@ export const CreateProd = () => {
   const [loaded, setLoaded] = useState(0);
   const token = window.localStorage.getItem("token");
   const { t } = useTranslation();
+  const { ln } = useParams();
 
   useEffect(() => {
     axios
@@ -106,7 +107,7 @@ export const CreateProd = () => {
             await new Promise((resolve) => setTimeout(resolve, 0));
           })
           .then(() => {
-            navigate("/hy");
+            navigate(`/${ln}`);
           })
           .catch((err) => console.log(err));
       } catch (e) {
@@ -125,7 +126,7 @@ export const CreateProd = () => {
             placeholder={t("make")}
             type="text"
             autoComplete="off"
-            name="name"
+            name="make"
             {...register("make")}
           />
           <input

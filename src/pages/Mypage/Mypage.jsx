@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import Header from "../../components/Header/Header";
 import "./Mypage.scss";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import checkAuth from "../../checkAuth";
 import API_URL from "../../config";
 import axios from "axios";
@@ -16,10 +16,11 @@ export const Mypage = () => {
   const [user, setUser] = useState(null);
   const [products, setProducts] = useState([]);
   const [createdDate, setCreatedDate] = useState("");
+  const { ln } = useParams();
 
   useEffect(() => {
     if (!auth) {
-      navigate("/");
+      navigate(`/${ln}`);
     } else {
       axios
         .get(`${API_URL}/auth/me`, {

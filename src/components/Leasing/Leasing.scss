@@ -1,0 +1,104 @@
+.leasing {
+    h3 {
+        margin-bottom: 15px;
+    }
+    h4 {
+        line-height: 45px;
+        margin: 0;
+    }
+}
+
+.selectors {
+    &_line {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        p {
+            max-width: 70%;
+            display: flex;
+            align-items: center;
+            margin-right: 5px;
+        }
+    }
+}
+.selectors_stop {
+    text-align: right;
+    margin-bottom: 10px;
+    color: red;
+    margin-top: -5px;
+}
+.inputs {
+    &_line {
+        &_flex {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+        p {
+            margin-top: -5px;
+            text-align: right;
+            color: red;
+            margin-bottom: 10px;
+        }
+        label {
+            min-width: 50%;
+            display: flex;
+            align-items: center;
+            margin-right: 5px;
+        }
+    }
+}
+form {
+    display: flex;
+    align-items: stretch;
+    flex-direction: column;
+    justify-content: center;
+    width: 100%;
+    .price {
+        display: flex;
+        align-items: center;
+        input {
+            margin-right: 10px;
+        }
+    }
+    .mb10 {
+        margin-bottom: 10px;
+    }
+    .field {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        .controller {
+            flex: 1;
+            margin-right: 10px;
+        }
+        .delete {
+            padding: 7px;
+            border: 1px solid #f84646;
+            background-color: transparent;
+            border-radius: 10px;
+            svg {
+                width: 20px;
+            }
+        }
+    }
+    .switcher {
+        margin: 0;
+    }
+    input::placeholder {
+        font-size: 15px;
+    }
+
+    input,
+    textarea {
+        width: 100%;
+        padding: 10px 20px;
+        border-radius: 15px;
+        font-size: 18px;
+        border: 1px solid var(--dark);
+    }
+    textarea {
+        font-size: 15px;
+        resize: vertical;
+    }
+}

@@ -1,6 +1,12 @@
 .select {
     position: relative;
     display: inline-flex;
+    &.error {
+        button {
+            border-color: red;
+            box-shadow: rgba(190, 51, 51, 0.753) 0 0 0 1px inset;
+        }
+    }
     span {
         margin-right: 10px;
     }
@@ -54,6 +60,7 @@
             border-radius: 0 0 10px 10px;
         }
         button {
+            box-shadow: none;
             border: none;
             border-radius: 0px;
             background: var(--gray);

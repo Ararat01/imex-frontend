@@ -12,6 +12,7 @@ import { Mypage } from "./pages/Mypage/Mypage.jsx";
 import { CreateProd } from "./pages/CreateProd/CreateProd.jsx";
 import { ProductPage } from "./pages/ProductPage/ProductPage.jsx";
 import "./i18n";
+import { TradeIn } from "./pages/TradeIn/TradeIn";
 
 function App() {
   return (
@@ -24,6 +25,7 @@ function App() {
           <Route path="/:ln/log/" element={<Login />} />
           <Route path="/:ln/reg/" element={<Reg />} />
           <Route path="/:ln/mypage/" element={<Mypage />} />
+          <Route path="/:ln/tradein/" element={<TradeIn />} />
           <Route path="/:ln/mypage/create/:id" element={<CreateProd />} />
           <Route path="/:ln/product/:id" element={<ProductPage />} />
           <Route

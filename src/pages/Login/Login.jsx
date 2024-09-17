@@ -1,6 +1,6 @@
 import React from "react";
 import "./Login.scss";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useNavigate, useParams } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import Button from "../../ui/Button/Button";
 import axios from "axios";
@@ -9,6 +9,7 @@ import Header from "./../../components/Header/Header";
 
 export const Login = () => {
   const navigate = useNavigate();
+  const {ln} = useParams()
 
   const onSubmit = () => {
     const values = getValues();
@@ -17,7 +18,7 @@ export const Login = () => {
       .post(`${API_URL}/auth/login`, values)
       .then((res) => {
         window.localStorage.setItem("token", res.data.token);
-        navigate("/");
+        navigate(`/${ln}`);
       })
       .catch((err) => console.log(err));
   };

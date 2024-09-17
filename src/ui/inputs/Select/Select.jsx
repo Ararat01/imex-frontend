@@ -3,6 +3,7 @@ import "./Select.scss";
 import { useTranslation } from "react-i18next";
 
 export const Select = ({
+  error = false,
   defo = "",
   options = ["Արտահանում", "Ներմուծում"],
   text = "",
@@ -19,7 +20,7 @@ export const Select = ({
     getValue(option);
   }, [option]);
   return (
-    <div className="select">
+    <div className={`select ${error ? "error" : ""}`}>
       <span>{text}</span>
       <button onClick={() => setShow(!show)} type="button">
         <span>{t(option) || defo}</span>

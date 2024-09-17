@@ -4,7 +4,7 @@ import "./Services.scss";
 export default function Services() {
   return (
     <>
-      <h3>Օգտվեք մեր հատուկ ծառայություններից</h3>
+      <h3 className="title">Օգտվեք մեր հատուկ ծառայություններից</h3>
       <div className="services">
         <div>
           <button>
