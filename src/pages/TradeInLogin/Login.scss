@@ -1,0 +1,29 @@
+.logForm {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    form {
+        display: flex;
+        align-items: center;
+        flex-direction: column;
+        justify-content: center;
+        padding: 40px 0;
+        width: 100%;
+        max-width: 500px;
+        .mb10 {
+            margin-bottom: 10px;
+        }
+        input,
+        textarea {
+            padding: 10px 25px;
+            border-radius: 15px;
+            font-size: 18px;
+            border: 1px solid var(--gray);
+        }
+    }
+    a {
+        color: var(--blue);
+        text-decoration: underline;
+    }
+}

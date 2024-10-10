@@ -168,7 +168,7 @@ export const Leasing = () => {
         >
           {t("count")}
         </button>
-        <h4>{maxLeasing} AMD</h4>
+        <h4>{maxLeasing ? `${maxLeasing} AMD` : ""}</h4>
       </div>
     </div>
   );

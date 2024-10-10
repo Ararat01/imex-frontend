@@ -13,12 +13,12 @@ export const Filters = ({ switcherValue, setSwitcherValue }) => {
   return (
     <div className="container">
       <div className="filters">
-        <Switcher
+        {/* <Switcher
           leftText="export"
           rightText="import"
           selected={switcherValue}
           changeSelect={changeSwitcher}
-        />
+        /> */}
         <div className="filters_sort">
           <span>{t("filterBy")}</span>
           <Select

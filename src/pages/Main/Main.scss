@@ -42,6 +42,17 @@
         border-radius: 20px;
         border: none;
         position: relative;
+        transition: 0.3s;
+        &:first-child {
+            margin-right: 20px;
+        }
+        &.active {
+            width: 55%;
+            img {
+                filter: grayscale(0%);
+                transform: scale(1.05);
+            }
+        }
         &:hover {
             div {
             }

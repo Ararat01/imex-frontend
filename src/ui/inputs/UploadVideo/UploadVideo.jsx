@@ -5,13 +5,13 @@ import React, {
   useState,
 } from "react";
 import axios from "axios";
-import "./UploadImage.scss"; // Custom styles
+import "./UploadVideo.scss"; // Custom styles
 import API_URL from "../../../config";
 import { useTranslation } from "react-i18next";
 
-const UploadImage = forwardRef((props, ref) => {
+const UploadVideo = forwardRef((props, ref, url = "/uploads") => {
   const fileInputRef = useRef(null);
-  const [loadedImageName, setImageName] = useState(""); // State specific to image component
+  const [loadedVideoName, setVideoName] = useState(""); // State specific to video component
   const { t } = useTranslation();
 
   const [files, setFiles] = useState([]);
@@ -22,7 +22,7 @@ const UploadImage = forwardRef((props, ref) => {
 
       const formData = new FormData();
       for (let i = 0; i < files.length; i++) {
-        formData.append("images", files[i]);
+        formData.append("videos", files[i]);
       }
 
       try {
@@ -36,19 +36,19 @@ const UploadImage = forwardRef((props, ref) => {
           }
         );
 
-        const { imageUrls } = response.data;
+        const { videoUrls } = response.data;
 
-        return imageUrls;
+        return videoUrls;
       } catch (error) {
-        console.error("Error uploading images:", error);
-        alert("Failed to upload images");
+        console.error("Error uploading videos:", error);
+        alert("Failed to upload videos");
       }
     },
   }));
 
   const handleFileChange = (e) => {
     setFiles(e.target.files);
-    setImageName(e.target.files[0].name); // Set the image name
+    setVideoName(e.target.files[0].name); // Set the video name
   };
 
   return (
@@ -56,20 +56,20 @@ const UploadImage = forwardRef((props, ref) => {
       <input
         ref={fileInputRef}
         type="file"
-        id="fileInputImage"
+        id="fileInputVideo"
         className="file-input"
         multiple={props.multiple}
-        accept="image/*"
+        accept="video/*"
         onChange={handleFileChange}
       />
-      <label htmlFor="fileInputImage" className="file-upload-button">
+      <label htmlFor="fileInputVideo" className="file-upload-button">
         {t(props.label || "chooseFile")}
       </label>
       <span id="fileName" className="file-name">
-        {loadedImageName || t("noFiles")}
+        {loadedVideoName || t("noFiles")}
       </span>
     </div>
   );
 });
 
-export default UploadImage;
+export default UploadVideo;

@@ -13,6 +13,8 @@ import { CreateProd } from "./pages/CreateProd/CreateProd.jsx";
 import { ProductPage } from "./pages/ProductPage/ProductPage.jsx";
 import "./i18n";
 import { TradeIn } from "./pages/TradeIn/TradeIn";
+import { TradeInLogin } from "./pages/TradeInLogin/TradeInLogin.jsx";
+import { MyPageTradeIn } from "./pages/MyPageTradeIn/MyPageTradeIn.jsx";
 
 function App() {
   return (
@@ -28,6 +30,8 @@ function App() {
           <Route path="/:ln/tradein/" element={<TradeIn />} />
           <Route path="/:ln/mypage/create/:id" element={<CreateProd />} />
           <Route path="/:ln/product/:id" element={<ProductPage />} />
+          <Route path="/:ln/tradeIn/login" element={<TradeInLogin />} />
+          <Route path="/:ln/tradeInMyPage" element={<MyPageTradeIn />} />
           <Route
             path="/:ln/:categoryHr/product/:id"
             element={<ProductPage />}

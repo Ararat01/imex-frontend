@@ -13,6 +13,7 @@ import "./Main.scss";
 export const Main = () => {
   const { t } = useTranslation();
   const { ln } = useParams();
+  const [market, setMarket] = useState("");
   const [products, setProducts] = useState([]);
   const [switcherValue, setSwitcherValue] = useState("import");
   const navigate = useNavigate();
@@ -50,13 +51,19 @@ export const Main = () => {
         </div>
       </div>
       <div className="category container">
-        <button>
+        <button
+          className={market === "primaryMarket" ? "active" : ""}
+          onClick={() => setMarket("primaryMarket")}
+        >
           <img src="/images/1stmarket.png" alt="" />
           <div>
             <h2>{t("primaryMarket")}</h2>
           </div>
         </button>
-        <button>
+        <button
+          className={market === "secondaryMarket" ? "active" : ""}
+          onClick={() => setMarket("secondaryMarket")}
+        >
           <img src="/images/2ndmarket.png" alt="" />
           <div>
             <h2>{t("secondaryMarket")}</h2>
@@ -69,7 +76,7 @@ export const Main = () => {
           <div className="trade_text">
             <h2>Trade In</h2>
             <p>{t("tradeIn")}</p>
-            <Button click={() => navigate(`/${ln}/`)} text={t("more")} />
+            <Button click={() => navigate(`/${ln}/tradein`)} text={t("more")} />
           </div>
         </div>
       </div>
@@ -81,18 +88,36 @@ export const Main = () => {
       <div className="container">
         <div className="products">
           {products.length ? (
-            products.map((prod, i) => {
-              return (
-                <div key={i} className="child">
-                  <Card
-                    name={`${prod.make} ${prod.model} . ${prod.year}`}
-                    img={prod.images[3]}
-                    price={`${prod.price} ${prod.currency}`}
-                    openProduct={() => navigate(`product/${prod._id}`)}
-                  />
-                </div>
-              );
-            })
+            products.filter((prod) => {
+              if (market) {
+                return market === prod.market;
+              }
+              return true;
+            }).length ? (
+              products
+                .filter((prod) => {
+                  if (market) {
+                    return market === prod.market;
+                  }
+                  return true;
+                })
+                .map((prod, i) => {
+                  return (
+                    <div key={i} className="child">
+                      <Card
+                        name={`${prod.make} ${prod.model} . ${prod.year}`}
+                        img={prod.images[3]}
+                        price={`${prod.price} ${prod.currency}`}
+                        openProduct={() => navigate(`product/${prod._id}`)}
+                      />
+                    </div>
+                  );
+                })
+            ) : (
+              <div>
+                <h4>Արտադրանք չի գտնվել</h4>
+              </div>
+            )
           ) : (
             <div>
               <h4>Արտադրանք չի գտնվել</h4>
