@@ -77,7 +77,7 @@ export default function Header({
             <span>International Platform for</span>
             <span>Import and Export</span>
           </p>
-          <p className="attr">IPIEX</p>
+          <h1 className="attr">IPIEX</h1>
         </Link>
         {options ? (
           <div className="account">
