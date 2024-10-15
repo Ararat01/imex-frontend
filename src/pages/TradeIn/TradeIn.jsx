@@ -17,7 +17,13 @@ export const TradeIn = () => {
   const { ln } = useParams();
   const { t } = useTranslation();
 
-  //image
+  useEffect(() => {
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth",
+    });
+  }, []);
+
   const uploadImageRef = useRef(null);
   const handleImgSubmit = () => {
     if (uploadImageRef.current) {
