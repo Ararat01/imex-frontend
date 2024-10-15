@@ -118,3 +118,30 @@
         object-position: center;
     }
 }
+
+@media screen and (max-width: 700px) {
+    .tradein {
+        .companies {
+            &_block {
+                display: block;
+                &_info {
+                    h3 {
+                        text-align: center;
+                    }
+                }
+                &_img {
+                    float: left;
+                    min-width: 180px;
+                }
+            }
+            &_block.reverse {
+                .companies_block_img {
+                    float: right;
+                }
+            }
+            &_block:not(:last-child) {
+                margin-bottom: 40px;
+            }
+        }
+    }
+}
